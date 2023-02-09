@@ -27,3 +27,27 @@ st.write('# Our last morning kick off :sob:')
 st.markdown("<h1 style='text-align: center; color: blue;'>Our last morning kick off</h1>", unsafe_allow_html=True)
 
 
+
+### DATA LOADING
+
+### A. define function to load data
+@st.cache # <- add decorators after tried running the load multiple times
+def load_data(path, num_rows):
+
+    df = pd.read_csv(path, nrows=num_rows)
+
+    # Streamlit will only recognize 'latitude' or 'lat', 'longitude' or 'lon', as coordinates
+
+    df = df.rename(columns={'Start Station Latitude': 'lat', 'Start Station Longitude': 'lon'})     
+    df['Start Time'] = pd.to_datetime(df['Start Time'])      # reset dtype for column
+     
+    return df
+
+### B. Load first 50K rows
+df = load_data("NYC_bikes_small.csv", 50000)
+
+### C. Display the dataframe in the app
+st.dataframe(df)
+
+
+
