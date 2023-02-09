@@ -1,10 +1,10 @@
 Mkdir -p ~/.streamlit/
 
-Echo Ò\
+Echo "\
 [server]\n\
 headless = true\n\
 Port = $PORT\n\
 enableCORS=false\n\
 \n\
-Ò >  ~/.streamlit/config.toml
+" >  ~/.streamlit/config.toml
 
