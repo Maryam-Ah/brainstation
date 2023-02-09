@@ -52,6 +52,33 @@ st.dataframe(df)
 
 
 #######################################################################################################################################
+### DATA ANALYSIS & VISUALIZATION
+
+### B. Add filter on side bar after initial bar chart constructed
+
+st.sidebar.subheader("Usage filters")
+round_trip = st.sidebar.checkbox('Round trips only')
+
+if round_trip:
+    df = df[df['Start Station ID'] == df['End Station ID']]
+
+
+### A. Add a bar chart of usage per hour
+
+st.subheader("Daily usage per hour")
+
+counts = df["Start Time"].dt.hour.value_counts()
+st.bar_chart(counts)
+
+### The features we have used here are very basic. Most Python libraries can be imported as in Jupyter Notebook so the possibilities are vast.
+#### Visualizations can be rendered using matplotlib, seaborn, plotly etc.
+#### Models can be imported using *.pkl files (or similar) so predictions, classifications etc can be done within the app using previously optimized models
+#### Automating processes and handling real-time data
+
+
+
+
+#######################################################################################################################################
 ### STATION MAP
 
 st.subheader('Location Map - NYC bike stations')      
