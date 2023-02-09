@@ -87,3 +87,21 @@ st.map(df)
 
 
 
+#######################################################################################################################################
+### MODEL INFERENCE
+
+st.subheader("Using pretrained models with user input")
+
+# A. Load the model using joblib
+model = joblib.load('sentiment_pipeline.pkl')
+
+# B. Set up input field
+text = st.text_input('Enter your review text below', 'Best. Restaurant. Ever.')
+
+# C. Use the model to predict sentiment & write result
+prediction = model.predict({text})
+
+if prediction == 1:
+    st.write('We predict that this is a positive review!')
+else:
+    st.write('We predict that this is a negative review!')
